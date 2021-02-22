@@ -46,7 +46,7 @@ export default class Example extends React.Component {
         console.log(finalData)
 
         return (
-            <XYPlot width={500} height={500}>
+            <XYPlot width={500} height={500} margin={{ left: 50 }}>
                 <HorizontalGridLines />
                 <VerticalBarSeries data={finalData} />
                 <XAxis title="Time (Years)" />
