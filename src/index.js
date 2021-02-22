@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import axios from 'axios'
-import Example from '/components/BarChart.js'
+import Example from './components/BarChart.js'
+import UserInputForm from './components/UserInputForm'
+import PersonalFinanceTip from './components/PersonalFinanceTip'
+import Legend from './components/Legend.js'
 
 class App extends Component {
     constructor() {
@@ -24,11 +27,9 @@ class App extends Component {
         }
         return (
             <div>
-                <ul>
-                    {users.map((user) => {
-                        return <li key={user.id}>{user.name}</li>
-                    })}
-                </ul>
+                {/* <PersonalFinanceTip /> */}
+                {/* <UserInputForm /> */}
+                <Legend />
                 <Example />
             </div>
         )
