@@ -48,10 +48,25 @@ import App from './app'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 // import CssBaseline from '@material-ui/core/CssBaseline'
-function reducer() {
-    return {}
+
+const initialState = {
+    currentAge: 21,
+    retiringAge: 65,
+    initialAmount: 5000,
+    monthlyContribution: 100,
+    interestRate: 8,
+    monthlyExpenses: 1000,
+}
+
+function reducer(state = initialState, action) {
+    return state
 }
 
 const store = createStore(reducer)
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('app')
+)

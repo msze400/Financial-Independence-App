@@ -10,7 +10,7 @@ import {
     AreaSeries,
 } from 'react-vis'
 
-export default class Example extends React.Component {
+class Example extends React.Component {
     render() {
         const data = [
             { x: 0, y: 8 },
@@ -25,15 +25,15 @@ export default class Example extends React.Component {
             { x: 9, y: 0 },
         ]
 
-        const initialAmount = 10000
-        const interestRate = 0.05
+        const { initialAmount, interestRate, monthlyExpenses } = this.props
+
         const numInterestApplied = 12
         const timeElapsed = Array.from(Array(45), (v, i) => i + 1)
         const finalAmount = timeElapsed.map((year) => {
             return (
                 initialAmount *
                 Math.pow(
-                    1 + interestRate / numInterestApplied,
+                    1 + interestRate / 100 / numInterestApplied,
                     numInterestApplied * year
                 )
             )
@@ -44,7 +44,7 @@ export default class Example extends React.Component {
             return accum
         }, [])
 
-        console.log(finalData)
+        // console.log(finalData)
 
         return (
             <XYPlot width={500} height={500} margin={{ left: 50 }}>
@@ -57,8 +57,13 @@ export default class Example extends React.Component {
     }
 }
 
-// const mapStateToProps = (state) => ({
-//     // initialAmount_Redux: state.initialAmount,
-// })
+const mapStateToProps = (state) => ({
+    initialAmount: state.initialAmount,
+    currentAge: state.currentAge,
+    initialAmount: state.initialAmount,
+    monthlyContribution: state.monthlyContribution,
+    interestRate: state.interestRate,
+    monthlyExpenses: state.monthlyExpenses,
+})
 
-// export default connect(mapStateToProps)(Example)
+export default connect(mapStateToProps)(Example)

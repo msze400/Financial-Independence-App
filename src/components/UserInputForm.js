@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import MaskedInput from 'react-text-mask'
 import NumberFormat from 'react-number-format'
@@ -53,15 +54,17 @@ function NumberFormatCustom(props) {
         />
     )
 }
-
-export default function FormattedInputs() {
+function UserInputForm(props) {
     const classes = useStyles()
     const [values, setValues] = React.useState({
+        currentAge: '0',
+        retiringAge: '0',
         monthlyContribution: '0',
         initialAmount: '0',
         rateOfReturn: '0',
         monthlyExpenses: '0',
     })
+    console.log(props)
 
     const handleChange = (event) => {
         setValues({
@@ -81,19 +84,13 @@ export default function FormattedInputs() {
                             onChange={handleChange}
                             name="currentAge"
                             id="formatted-currentAge-input"
-                            InputProps={{
-                                inputComponent: NumberFormatCustom,
-                            }}
                         />
                         <TextField
                             label="Retiring Age"
-                            value={values.currentAge}
+                            value={values.retiringAge}
                             onChange={handleChange}
-                            name="currentAge"
+                            name="retiringAge"
                             id="formatted-currentAge-input"
-                            InputProps={{
-                                inputComponent: NumberFormatCustom,
-                            }}
                         />
 
                         <TextField
@@ -147,3 +144,13 @@ export default function FormattedInputs() {
         </div>
     )
 }
+const mapStateToProps = (state) => ({
+    initialAmount: state.initialAmount,
+    currentAge: state.currentAge,
+    initialAmount: state.initialAmount,
+    monthlyContribution: state.monthlyContribution,
+    interestRate: state.interestRate,
+    monthlyExpenses: state.monthlyExpenses,
+})
+
+export default connect(mapStateToProps)(UserInputForm)
