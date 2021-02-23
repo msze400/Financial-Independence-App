@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
 import FormControl from '@material-ui/core/FormControl'
 import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,11 +74,19 @@ function UserInputForm(props) {
         })
     }
 
+    const handleSubmit = (event) => {
+        // event.preventDefault()
+        console.log('hello')
+    }
+
     return (
         <div className={classes.userForm}>
             <Paper>
                 <div className={classes.root}>
-                    <FormControl className={classes.form}>
+                    <FormControl
+                        className={classes.form}
+                        onSubmit={handleSubmit}
+                    >
                         <TextField
                             label="Current Age"
                             value={values.currentAge}

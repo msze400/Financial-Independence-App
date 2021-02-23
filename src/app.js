@@ -1,5 +1,6 @@
 import React from 'react'
 import UserInputForm from './components/UserInputForm.js'
+import UserInput from './components/UserInput.js'
 // import { Navbar, Menu } from './components'
 // import FooterPage from './components/FooterPage'
 // import Routes from './routes'
@@ -12,7 +13,7 @@ const App = () => {
         <div id="App">
             <Navbar />
             <div id="Body">
-                <UserInputForm />
+                <UserInput />
                 <Legend />
                 <Example />
             </div>
