@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
     XYPlot,
     XAxis,
@@ -9,7 +10,7 @@ import {
     AreaSeries,
 } from 'react-vis'
 
-export default class Example extends React.Component {
+class Example extends React.Component {
     render() {
         const data = [
             { x: 0, y: 8 },
@@ -55,3 +56,9 @@ export default class Example extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    initialAmount_Redux: state.initialAmount,
+})
+
+export default connect(mapStateToProps)(Example)

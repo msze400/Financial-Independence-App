@@ -15,14 +15,20 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(1),
         },
     },
+
     userForm: {
         display: 'flex',
         flexWrap: 'wrap',
         '& > *': {
             margin: theme.spacing(1),
             width: theme.spacing(50),
-            height: theme.spacing(50),
+            height: theme.spacing(60),
         },
+    },
+    form: {
+        display: 'flex',
+        width: '15vw',
+        flexDirection: 'column',
     },
 }))
 
@@ -54,6 +60,7 @@ export default function FormattedInputs() {
         monthlyContribution: '0',
         initialAmount: '0',
         rateOfReturn: '0',
+        monthlyExpenses: '0',
     })
 
     const handleChange = (event) => {
@@ -67,7 +74,28 @@ export default function FormattedInputs() {
         <div className={classes.userForm}>
             <Paper>
                 <div className={classes.root}>
-                    <FormControl>
+                    <FormControl className={classes.form}>
+                        <TextField
+                            label="Current Age"
+                            value={values.currentAge}
+                            onChange={handleChange}
+                            name="currentAge"
+                            id="formatted-currentAge-input"
+                            InputProps={{
+                                inputComponent: NumberFormatCustom,
+                            }}
+                        />
+                        <TextField
+                            label="Retiring Age"
+                            value={values.currentAge}
+                            onChange={handleChange}
+                            name="currentAge"
+                            id="formatted-currentAge-input"
+                            InputProps={{
+                                inputComponent: NumberFormatCustom,
+                            }}
+                        />
+
                         <TextField
                             label="Initial Amount Invested"
                             value={values.initialAmount}
@@ -82,18 +110,25 @@ export default function FormattedInputs() {
                             label="Monthly Contribution"
                             value={values.monthlyContribution}
                             onChange={handleChange}
-                            name="numberformat"
+                            name="monthlyContribution"
                             id="formatted-monthlyContribution-input"
                             InputProps={{
                                 inputComponent: NumberFormatCustom,
                             }}
                         />
                         <TextField
-                            label="Annual Rate of Return a Year"
+                            label="Annual Rate of Return (%)"
                             value={values.rateOfReturn}
                             onChange={handleChange}
                             name="rateOfReturn"
                             id="formatted-rateOfReturn-input"
+                        />
+                        <TextField
+                            label="Monthly Expenses"
+                            value={values.monthlyExpenses}
+                            onChange={handleChange}
+                            name="monthlyExpenses"
+                            id="formatted-monthlyExpenses-input"
                             InputProps={{
                                 inputComponent: NumberFormatCustom,
                             }}

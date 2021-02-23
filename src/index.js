@@ -45,10 +45,17 @@ import ReactDOM from 'react-dom'
 // import history from './history'
 // import store from './store'
 import App from './app'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 // import CssBaseline from '@material-ui/core/CssBaseline'
+function reducer() {
+    return {}
+}
+
+const store = createStore(reducer)
 
 ReactDOM.render(
-    <App />,
-
-    document.getElementById('app')
+    <Provider store={store}>
+        <App />, document.getElementById('app')
+    </Provider>
 )
