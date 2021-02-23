@@ -3,13 +3,11 @@ import { connect } from 'react-redux'
 import NumberFormat from 'react-number-format'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
-import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
+import { updateUserInput } from '../index.js'
 
 const styles = (theme) => ({
     form: {
-        // display: 'flex',
-        // flexDirection: 'column',
         height: '80vh',
     },
     input: {
@@ -42,7 +40,7 @@ function NumberFormatCustom(props) {
             }}
             thousandSeparator
             isNumericString
-            prefix="$"
+            // prefix="$"
         />
     )
 }
@@ -59,6 +57,7 @@ class UserInput extends React.Component {
             monthlyExpenses: this.props.monthlyExpenses,
         }
         this.handleChange = this.handleChange.bind(this)
+        // this.submit = this.submit.bind(this)
     }
 
     async handleChange(evt) {
@@ -66,13 +65,10 @@ class UserInput extends React.Component {
             [evt.target.name]: evt.target.value,
         })
     }
-    async submit(event) {
-        event.preventDefault()
-        console.log('hi')
-    }
 
     render() {
-        const { submit, handleChange } = this
+        const { handleChange } = this
+        const { handleSubmit } = this.props
         const { classes, theme } = this.props
         const {
             currentAge,
@@ -82,72 +78,73 @@ class UserInput extends React.Component {
             interestRate,
             monthlyExpenses,
         } = this.state
-        console.log('STATE', this.state)
         console.log(this.props)
 
         return (
             <Paper className={classes.formContainer}>
-                <TextField
-                    className={classes.input}
-                    label="Current Age"
-                    name="currentAge"
-                    value={currentAge}
-                    onChange={(evt) => handleChange(evt)}
-                />
-                <TextField
-                    className={classes.input}
-                    label="Retirement Age"
-                    name="retiringAge"
-                    value={retiringAge}
-                    onChange={(evt) => handleChange(evt)}
-                />
-                <TextField
-                    className={classes.input}
-                    label="Initial Amount Invested"
-                    name="initialAmount"
-                    value={initialAmount}
-                    onChange={(evt) => handleChange(evt)}
-                    InputProps={{
-                        inputComponent: NumberFormatCustom,
-                    }}
-                />
-                <TextField
-                    className={classes.input}
-                    label="Monthly Contribution"
-                    name="monthlyContribution"
-                    value={monthlyContribution}
-                    onChange={(evt) => handleChange(evt)}
-                    InputProps={{
-                        inputComponent: NumberFormatCustom,
-                    }}
-                />
-                <TextField
-                    className={classes.input}
-                    label="Annual Rate of Return (%)"
-                    name="interestRate"
-                    value={interestRate}
-                    onChange={(evt) => handleChange(evt)}
-                />
-                <TextField
-                    className={classes.input}
-                    label="Monthly Expenses"
-                    name="monthlyExpenses"
-                    value={monthlyExpenses}
-                    onChange={(evt) => handleChange(evt)}
-                    InputProps={{
-                        inputComponent: NumberFormatCustom,
-                    }}
-                />
-                <button
-                    className={`${'btn waves-effect waves-light'} ${
-                        classes.input
-                    }`}
-                    type="submit"
-                    name="action"
-                >
-                    Submit
-                    <i className="material-icons right">send</i>
-                </button>
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        className={classes.input}
+                        label="Current Age"
+                        name="currentAge"
+                        value={currentAge}
+                        onChange={(evt) => handleChange(evt)}
+                    />
+                    <TextField
+                        className={classes.input}
+                        label="Retirement Age"
+                        name="retiringAge"
+                        value={retiringAge}
+                        onChange={(evt) => handleChange(evt)}
+                    />
+                    <TextField
+                        className={classes.input}
+                        label="Initial Amount Invested"
+                        name="initialAmount"
+                        value={initialAmount}
+                        onChange={(evt) => handleChange(evt)}
+                        // InputProps={{
+                        //     inputComponent: NumberFormatCustom,
+                        // }}
+                    />
+                    <TextField
+                        className={classes.input}
+                        label="Monthly Contribution"
+                        name="monthlyContribution"
+                        value={monthlyContribution}
+                        onChange={(evt) => handleChange(evt)}
+                        // InputProps={{
+                        //     inputComponent: NumberFormatCustom,
+                        // }}
+                    />
+                    <TextField
+                        className={classes.input}
+                        label="Annual Rate of Return (%)"
+                        name="interestRate"
+                        value={interestRate}
+                        onChange={(evt) => handleChange(evt)}
+                    />
+                    <TextField
+                        className={classes.input}
+                        label="Monthly Expenses"
+                        name="monthlyExpenses"
+                        value={monthlyExpenses}
+                        onChange={(evt) => handleChange(evt)}
+                        // InputProps={{
+                        //     inputComponent: NumberFormatCustom,
+                        // }}
+                    />
+                    <button
+                        className={`${'btn waves-effect waves-light'} ${
+                            classes.input
+                        }`}
+                        type="submit"
+                        name="action"
+                    >
+                        Submit
+                        <i className="material-icons right">send</i>
+                    </button>
+                </form>
             </Paper>
         )
     }
@@ -155,6 +152,39 @@ class UserInput extends React.Component {
 
 const mapStateToProps = (state) => state
 
+const mapDispatch = (dispatch) => {
+    return {
+        handleSubmit(evt) {
+            evt.preventDefault()
+            const currentAge = evt.target.currentAge.value
+            const retiringAge = evt.target.retiringAge.value
+            const initialAmount = evt.target.initialAmount.value
+            const monthlyContribution = evt.target.monthlyContribution.value
+            const interestRate = evt.target.interestRate.value
+            const monthlyExpenses = evt.target.monthlyExpenses.value
+            console.log(
+                currentAge,
+                retiringAge,
+                initialAmount,
+                monthlyContribution,
+                interestRate,
+                monthlyExpenses
+            )
+            // dispatch({ type: 'UPDATE_FORM' })
+            dispatch(
+                updateUserInput(
+                    currentAge,
+                    retiringAge,
+                    initialAmount,
+                    monthlyContribution,
+                    interestRate,
+                    monthlyExpenses
+                )
+            )
+        },
+    }
+}
+
 export default withStyles(styles, { withTheme: true })(
-    connect(mapStateToProps)(UserInput)
+    connect(mapStateToProps, mapDispatch)(UserInput)
 )

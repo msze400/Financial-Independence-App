@@ -9,6 +9,7 @@ import {
     VerticalBarSeries,
     AreaSeries,
 } from 'react-vis'
+import { Motion, spring } from 'react-motion'
 
 class Example extends React.Component {
     render() {
@@ -24,6 +25,14 @@ class Example extends React.Component {
             { x: 8, y: 2 },
             { x: 9, y: 0 },
         ]
+
+        // const Test = (props) => {
+        //     return (
+        //         <Motion defaultStyle={{ x: 0 }} style={{ x: spring(10) }}>
+        //             {(value) => <div>{value.x}</div>}
+        //         </Motion>
+        //     )
+        // }
 
         const { initialAmount, interestRate, monthlyExpenses } = this.props
 
@@ -47,9 +56,12 @@ class Example extends React.Component {
         // console.log(finalData)
 
         return (
-            <XYPlot width={500} height={500} margin={{ left: 50 }}>
+            <XYPlot width={500} height={500} margin={{ left: 100 }}>
                 <HorizontalGridLines />
-                <VerticalBarSeries data={finalData} />
+                <VerticalBarSeries
+                    data={finalData}
+                    animation={{ damping: 10, stiffness: 20 }}
+                />
                 <XAxis title="Time (Years)" />
                 <YAxis title="Dollar Amount" />
             </XYPlot>
