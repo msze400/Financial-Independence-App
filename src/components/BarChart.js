@@ -34,10 +34,20 @@ class Example extends React.Component {
         //     )
         // }
 
-        const { initialAmount, interestRate, monthlyExpenses } = this.props
+        const {
+            initialAmount,
+            interestRate,
+            monthlyExpenses,
+            currentAge,
+            retiringAge,
+            monthlyContribution,
+        } = this.props
 
         const numInterestApplied = 12
-        const timeElapsed = Array.from(Array(45), (v, i) => i + 1)
+        const growthPeriod = retiringAge - currentAge + 1
+
+        //used for $ calc
+        const timeElapsed = Array.from(Array(growthPeriod), (v, i) => i + 1)
         const finalAmount = timeElapsed.map((year) => {
             return (
                 initialAmount *
@@ -47,13 +57,17 @@ class Example extends React.Component {
                 )
             )
         })
+        console.log('GROWTH PERIOD', growthPeriod)
+        const timeElapsed_Age = []
+        for (let i = currentAge * 1; i <= retiringAge; i++) {
+            timeElapsed_Age.push(i)
+        }
+        console.log(timeElapsed_Age)
 
-        const finalData = timeElapsed.reduce((accum, year, index) => {
+        const finalData = timeElapsed_Age.reduce((accum, year, index) => {
             accum.push({ x: year, y: finalAmount[index] })
             return accum
         }, [])
-
-        // console.log(finalData)
 
         return (
             <XYPlot width={500} height={500} margin={{ left: 100 }}>
@@ -72,6 +86,7 @@ class Example extends React.Component {
 const mapStateToProps = (state) => ({
     initialAmount: state.initialAmount,
     currentAge: state.currentAge,
+    retiringAge: state.retiringAge,
     initialAmount: state.initialAmount,
     monthlyContribution: state.monthlyContribution,
     interestRate: state.interestRate,
