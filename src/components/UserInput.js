@@ -1,10 +1,10 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import NumberFormat from 'react-number-format'
-import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
-import { updateUserInput } from '../index.js'
+import React from 'react';
+import { connect } from 'react-redux';
+import NumberFormat from 'react-number-format';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import { updateUserInput } from '../index.js';
 
 const styles = (theme) => ({
     form: {
@@ -21,10 +21,10 @@ const styles = (theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
-})
+});
 
 function NumberFormatCustom(props) {
-    const { inputRef, onChange, ...other } = props
+    const { inputRef, onChange, ...other } = props;
 
     return (
         <NumberFormat
@@ -36,18 +36,18 @@ function NumberFormatCustom(props) {
                         name: props.name,
                         value: values.value,
                     },
-                })
+                });
             }}
             thousandSeparator
             isNumericString
             // prefix="$"
         />
-    )
+    );
 }
 
 class UserInput extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             currentAge: this.props.currentAge,
             retiringAge: this.props.retiringAge,
@@ -55,21 +55,21 @@ class UserInput extends React.Component {
             monthlyContribution: this.props.monthlyContribution,
             interestRate: this.props.interestRate,
             monthlyExpenses: this.props.monthlyExpenses,
-        }
-        this.handleChange = this.handleChange.bind(this)
+        };
+        this.handleChange = this.handleChange.bind(this);
         // this.submit = this.submit.bind(this)
     }
 
     async handleChange(evt) {
         this.setState({
             [evt.target.name]: evt.target.value,
-        })
+        });
     }
 
     render() {
-        const { handleChange } = this
-        const { handleSubmit } = this.props
-        const { classes, theme } = this.props
+        const { handleChange } = this;
+        const { handleSubmit } = this.props;
+        const { classes, theme } = this.props;
         const {
             currentAge,
             retiringAge,
@@ -77,8 +77,8 @@ class UserInput extends React.Component {
             monthlyContribution,
             interestRate,
             monthlyExpenses,
-        } = this.state
-        console.log(this.props)
+        } = this.state;
+        console.log(this.props);
 
         return (
             <Paper className={classes.formContainer}>
@@ -135,9 +135,7 @@ class UserInput extends React.Component {
                         // }}
                     />
                     <button
-                        className={`${'btn waves-effect waves-light'} ${
-                            classes.input
-                        }`}
+                        className={`${'btn waves-effect waves-light'} ${classes.input}`}
                         type="submit"
                         name="action"
                     >
@@ -146,22 +144,22 @@ class UserInput extends React.Component {
                     </button>
                 </form>
             </Paper>
-        )
+        );
     }
 }
 
-const mapStateToProps = (state) => state
+const mapStateToProps = (state) => state;
 
 const mapDispatch = (dispatch) => {
     return {
         handleSubmit(evt) {
-            evt.preventDefault()
-            const currentAge = evt.target.currentAge.value
-            const retiringAge = evt.target.retiringAge.value
-            const initialAmount = evt.target.initialAmount.value
-            const monthlyContribution = evt.target.monthlyContribution.value
-            const interestRate = evt.target.interestRate.value
-            const monthlyExpenses = evt.target.monthlyExpenses.value
+            evt.preventDefault();
+            const currentAge = evt.target.currentAge.value;
+            const retiringAge = evt.target.retiringAge.value;
+            const initialAmount = evt.target.initialAmount.value;
+            const monthlyContribution = evt.target.monthlyContribution.value;
+            const interestRate = evt.target.interestRate.value;
+            const monthlyExpenses = evt.target.monthlyExpenses.value;
             console.log(
                 currentAge,
                 retiringAge,
@@ -169,7 +167,7 @@ const mapDispatch = (dispatch) => {
                 monthlyContribution,
                 interestRate,
                 monthlyExpenses
-            )
+            );
             // dispatch({ type: 'UPDATE_FORM' })
             dispatch(
                 updateUserInput(
@@ -180,11 +178,11 @@ const mapDispatch = (dispatch) => {
                     interestRate,
                     monthlyExpenses
                 )
-            )
+            );
         },
-    }
-}
+    };
+};
 
 export default withStyles(styles, { withTheme: true })(
     connect(mapStateToProps, mapDispatch)(UserInput)
-)
+);

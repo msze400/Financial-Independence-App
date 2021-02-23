@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default class PersonalFinanceTip extends React.Component {
     render() {
@@ -12,6 +12,6 @@ export default class PersonalFinanceTip extends React.Component {
                     </a>
                 </div>
             </div>
-        )
+        );
     }
 }

@@ -1,13 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import { DiscreteColorLegend } from 'react-vis'
+import { DiscreteColorLegend } from 'react-vis';
 
-const ITEMS = [
-    'Initial Balance',
-    'Compound Interest Growth',
-    'Amount Contributed',
-]
+const ITEMS = ['Initial Balance', 'Compound Interest Growth', 'Amount Contributed'];
 
 export default function DiscreteColorExample() {
-    return <DiscreteColorLegend height={200} width={300} items={ITEMS} />
+    return <DiscreteColorLegend height={200} width={300} items={ITEMS} />;
 }

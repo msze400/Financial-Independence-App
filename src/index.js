@@ -1,11 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 // import { Router } from 'react-router-dom'
-import App from './app'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
+import App from './app';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-const UPDATE_FORM = 'UPDATE_FORM'
+const UPDATE_FORM = 'UPDATE_FORM';
 
 const initialState = {
     currentAge: 21,
@@ -14,7 +14,7 @@ const initialState = {
     monthlyContribution: 100,
     interestRate: 8,
     monthlyExpenses: 1000,
-}
+};
 
 export const updateUserInput = (
     currentAge,
@@ -32,11 +32,11 @@ export const updateUserInput = (
         monthlyContribution,
         interestRate,
         monthlyExpenses,
-    }
-}
+    };
+};
 
 function reducer(state = initialState, action) {
-    console.log('ACTION', action)
+    console.log('ACTION', action);
     switch (action.type) {
         case 'UPDATE_FORM':
             return {
@@ -46,18 +46,18 @@ function reducer(state = initialState, action) {
                 initialAmount: action.initialAmount,
                 interestRate: action.interestRate,
                 monthlyExpenses: action.monthlyExpenses,
-            }
+            };
         default:
-            console.log(state)
-            return state
+            console.log(state);
+            return state;
     }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer);
 
 ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('app')
-)
+);

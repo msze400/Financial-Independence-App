@@ -1,5 +1,5 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
     XYPlot,
     XAxis,
@@ -8,8 +8,8 @@ import {
     LineSeries,
     VerticalBarSeries,
     AreaSeries,
-} from 'react-vis'
-import { Motion, spring } from 'react-motion'
+} from 'react-vis';
+import { Motion, spring } from 'react-motion';
 
 class Example extends React.Component {
     render() {
@@ -24,7 +24,7 @@ class Example extends React.Component {
             { x: 7, y: 3 },
             { x: 8, y: 2 },
             { x: 9, y: 0 },
-        ]
+        ];
 
         // const Test = (props) => {
         //     return (
@@ -41,45 +41,40 @@ class Example extends React.Component {
             currentAge,
             retiringAge,
             monthlyContribution,
-        } = this.props
+        } = this.props;
 
-        const numInterestApplied = 12
-        const growthPeriod = retiringAge - currentAge + 1
+        const numInterestApplied = 12;
+        const growthPeriod = retiringAge - currentAge + 1;
 
         //used for $ calc
-        const timeElapsed = Array.from(Array(growthPeriod), (v, i) => i + 1)
+        const timeElapsed = Array.from(Array(growthPeriod), (v, i) => i + 1);
         const finalAmount = timeElapsed.map((year) => {
             return (
                 initialAmount *
-                Math.pow(
-                    1 + interestRate / 100 / numInterestApplied,
-                    numInterestApplied * year
-                )
-            )
-        })
-        console.log('GROWTH PERIOD', growthPeriod)
-        const timeElapsed_Age = []
+                Math.pow(1 + interestRate / 100 / numInterestApplied, numInterestApplied * year)
+            );
+        });
+
+        // used for x series label
+        const timeElapsed_Age = [];
         for (let i = currentAge * 1; i <= retiringAge; i++) {
-            timeElapsed_Age.push(i)
+            timeElapsed_Age.push(i);
         }
-        console.log(timeElapsed_Age)
 
         const finalData = timeElapsed_Age.reduce((accum, year, index) => {
-            accum.push({ x: year, y: finalAmount[index] })
-            return accum
-        }, [])
+            accum.push({ x: year, y: finalAmount[index] });
+            return accum;
+        }, []);
 
+        console.log(finalData);
         return (
             <XYPlot width={500} height={500} margin={{ left: 100 }}>
                 <HorizontalGridLines />
-                <VerticalBarSeries
-                    data={finalData}
-                    animation={{ damping: 10, stiffness: 20 }}
-                />
+                <VerticalBarSeries data={finalData} animation={{ damping: 10, stiffness: 20 }} />
                 <XAxis title="Time (Years)" />
                 <YAxis title="Dollar Amount" />
             </XYPlot>
-        )
+        );
     }
 }
 
@@ -91,6 +86,6 @@ const mapStateToProps = (state) => ({
     monthlyContribution: state.monthlyContribution,
     interestRate: state.interestRate,
     monthlyExpenses: state.monthlyExpenses,
-})
+});
 
-export default connect(mapStateToProps)(Example)
+export default connect(mapStateToProps)(Example);
