@@ -10,7 +10,7 @@ import {
     AreaSeries,
 } from 'react-vis'
 
-class Example extends React.Component {
+export default class Example extends React.Component {
     render() {
         const data = [
             { x: 0, y: 8 },
@@ -57,8 +57,8 @@ class Example extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    initialAmount_Redux: state.initialAmount,
-})
+// const mapStateToProps = (state) => ({
+//     // initialAmount_Redux: state.initialAmount,
+// })
 
-export default connect(mapStateToProps)(Example)
+// export default connect(mapStateToProps)(Example)

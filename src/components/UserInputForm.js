@@ -134,12 +134,12 @@ export default function FormattedInputs() {
                             }}
                         />
                         <button
-                            class="btn waves-effect waves-light"
+                            className="btn waves-effect waves-light"
                             type="submit"
                             name="action"
                         >
                             Submit
-                            <i class="material-icons right">send</i>
+                            <i className="material-icons right">send</i>
                         </button>
                     </FormControl>
                 </div>

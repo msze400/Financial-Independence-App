@@ -54,8 +54,4 @@ function reducer() {
 
 const store = createStore(reducer)
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />, document.getElementById('app')
-    </Provider>
-)
+ReactDOM.render(<App />, document.getElementById('app'))
