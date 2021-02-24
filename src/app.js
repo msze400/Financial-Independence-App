@@ -8,7 +8,7 @@ import BarSeries from './components/BarChart.js';
 import StackedAreaSeries from './components/StackedAreaSeries.js';
 import Legend from './components/Legend.js';
 import Navbar from './components/Navbar.js';
-import Meme from './components/Meme.js';
+import SimpleModal from './components/Meme.js';
 
 const App = () => {
     return (
@@ -19,7 +19,7 @@ const App = () => {
                 <Legend />
                 <BarSeries />
                 <StackedAreaSeries />
-                <Meme />
+                <SimpleModal />
             </div>
         </div>
     );
