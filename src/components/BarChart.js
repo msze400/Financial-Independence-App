@@ -13,19 +13,6 @@ import { Motion, spring } from 'react-motion';
 
 class Example extends React.Component {
     render() {
-        const data = [
-            { x: 0, y: 8 },
-            { x: 1, y: 5 },
-            { x: 2, y: 4 },
-            { x: 3, y: 9 },
-            { x: 4, y: 1 },
-            { x: 5, y: 7 },
-            { x: 6, y: 6 },
-            { x: 7, y: 3 },
-            { x: 8, y: 2 },
-            { x: 9, y: 0 },
-        ];
-
         // const Test = (props) => {
         //     return (
         //         <Motion defaultStyle={{ x: 0 }} style={{ x: spring(10) }}>
@@ -47,11 +34,34 @@ class Example extends React.Component {
         const growthPeriod = retiringAge - currentAge + 1;
 
         //used for $ calc
-        const timeElapsed = Array.from(Array(growthPeriod), (v, i) => i + 1);
-        const finalAmount = timeElapsed.map((year) => {
+        const timeElapsed = Array.from(Array(growthPeriod), (v, i) => i);
+
+        function compountInterestPrincipal(initialAmount, interestRate, numInterestApplied, year) {
             return (
                 initialAmount *
                 Math.pow(1 + interestRate / 100 / numInterestApplied, numInterestApplied * year)
+            );
+        }
+
+        // future values series makes the assumption contributions are made at the beginning of the month
+        // source: https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php#regular-contributions
+        function futureValueSeries(monthlyContribution, interestRate, numInterestApplied, year) {
+            return (
+                monthlyContribution *
+                (((Math.pow(
+                    1 + interestRate / 100 / numInterestApplied,
+                    numInterestApplied * year
+                ) -
+                    1) /
+                    (interestRate / 100 / numInterestApplied)) *
+                    (1 + interestRate / 100 / numInterestApplied))
+            );
+        }
+
+        const finalAmount = timeElapsed.map((year) => {
+            return (
+                compountInterestPrincipal(initialAmount, interestRate, numInterestApplied, year) +
+                futureValueSeries(monthlyContribution, interestRate, numInterestApplied, year)
             );
         });
 
@@ -70,7 +80,7 @@ class Example extends React.Component {
         return (
             <XYPlot width={500} height={500} margin={{ left: 100 }}>
                 <HorizontalGridLines />
-                <VerticalBarSeries data={finalData} animation={{ damping: 10, stiffness: 20 }} />
+                <VerticalBarSeries data={finalData} animation={{ damping: 5, stiffness: 9 }} />
                 <XAxis title="Time (Years)" />
                 <YAxis title="Dollar Amount" />
             </XYPlot>
