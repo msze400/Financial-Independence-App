@@ -46,6 +46,7 @@ function reducer(state = initialState, action) {
                 initialAmount: action.initialAmount,
                 interestRate: action.interestRate,
                 monthlyExpenses: action.monthlyExpenses,
+                monthlyContribution: action.monthlyContribution,
             };
         default:
             console.log(state);

@@ -13,3 +13,7 @@ export function futureValueSeries(monthlyContribution, interestRate, numInterest
             (1 + interestRate / 100 / numInterestApplied))
     );
 }
+
+export function onlyContributions(initialAmount, monthlyContribution, year) {
+    return initialAmount * 1 + year * monthlyContribution * 12;
+}

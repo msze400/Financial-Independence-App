@@ -99,7 +99,7 @@ class UserInput extends React.Component {
                     />
                     <TextField
                         className={classes.input}
-                        label="Initial Amount Invested"
+                        label="Initial Amount Invested ($)"
                         name="initialAmount"
                         value={initialAmount}
                         onChange={(evt) => handleChange(evt)}
@@ -109,7 +109,7 @@ class UserInput extends React.Component {
                     />
                     <TextField
                         className={classes.input}
-                        label="Monthly Contribution"
+                        label="Monthly Contribution ($)"
                         name="monthlyContribution"
                         value={monthlyContribution}
                         onChange={(evt) => handleChange(evt)}
@@ -126,7 +126,7 @@ class UserInput extends React.Component {
                     />
                     <TextField
                         className={classes.input}
-                        label="Monthly Expenses"
+                        label="Monthly Expenses ($)"
                         name="monthlyExpenses"
                         value={monthlyExpenses}
                         onChange={(evt) => handleChange(evt)}
