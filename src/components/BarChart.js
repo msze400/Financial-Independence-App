@@ -10,6 +10,7 @@ import {
     AreaSeries,
 } from 'react-vis';
 import { Motion, spring } from 'react-motion';
+import { compountInterestPrincipal, futureValueSeries } from './commonFunctions.js';
 
 class Example extends React.Component {
     render() {
@@ -35,28 +36,6 @@ class Example extends React.Component {
 
         //used for $ calc
         const timeElapsed = Array.from(Array(growthPeriod), (v, i) => i);
-
-        function compountInterestPrincipal(initialAmount, interestRate, numInterestApplied, year) {
-            return (
-                initialAmount *
-                Math.pow(1 + interestRate / 100 / numInterestApplied, numInterestApplied * year)
-            );
-        }
-
-        // future values series makes the assumption contributions are made at the beginning of the month
-        // source: https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php#regular-contributions
-        function futureValueSeries(monthlyContribution, interestRate, numInterestApplied, year) {
-            return (
-                monthlyContribution *
-                (((Math.pow(
-                    1 + interestRate / 100 / numInterestApplied,
-                    numInterestApplied * year
-                ) -
-                    1) /
-                    (interestRate / 100 / numInterestApplied)) *
-                    (1 + interestRate / 100 / numInterestApplied))
-            );
-        }
 
         const finalAmount = timeElapsed.map((year) => {
             return (
