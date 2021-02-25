@@ -4,13 +4,13 @@ import USAMap from 'react-usa-map';
 import Paper from '@material-ui/core/Paper';
 
 class Map extends Component {
-    /* mandatory */
     constructor(props) {
         super(props);
         this.state = {
             currentState: 'AL',
             medianIncome: '50,536',
             medianIncomeData: {
+                // // https://worldpopulationreview.com/state-rankings/median-household-income-by-state
                 MD: '84,805',
                 NJ: '82,545',
                 HI: '81,275',
@@ -68,8 +68,6 @@ class Map extends Component {
 
     /* optional customization of filling per state and calling custom callbacks per state */
     mapHandler(event) {
-        console.log(event.target.dataset);
-        // return alert(event.target.dataset.name);
         this.setState({
             currentState: event.target.dataset.name,
             medianIncome: this.state.medianIncomeData[event.target.dataset.name],
@@ -87,16 +85,19 @@ class Map extends Component {
 
     render() {
         return (
-            <div className="Map">
+            <div className="Map" style={{ width: '50vw' }}>
                 <Paper>
                     <USAMap
                         customize={this.statesCustomConfig()}
                         onClick={this.mapHandler}
                         width={500}
                     />
-                    <p>
-                        Median Income for {this.state.currentState} is ${this.state.medianIncome}{' '}
-                    </p>
+                    <Paper>
+                        <p>
+                            Median Income for {this.state.currentState} is $
+                            {this.state.medianIncome}{' '}
+                        </p>
+                    </Paper>
                 </Paper>
             </div>
         );
