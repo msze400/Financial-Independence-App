@@ -79,18 +79,9 @@ class Map extends Component {
     statesCustomConfig() {
         return {
             NJ: {
-                clickHandler: (event) => {
-                    console.log(event.target.dataset);
-                    this.setState({
-                        currentState: event.target.dataset.name,
-                        medianIncome: this.state.medianIncomeData[event.target.dataset.name],
-                    });
-                },
                 // console.log(event.target.dataset, this.state.medianIncomeData),
             },
-            NY: {
-                fill: '#CC0000',
-            },
+            NY: {},
         };
     }
 
