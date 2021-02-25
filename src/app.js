@@ -11,6 +11,7 @@ import Navbar from './components/Navbar.js';
 import SimpleModal from './components/Meme.js';
 import { render } from 'react-dom';
 import Button from '@material-ui/core/Button';
+import Map from './components/Map.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -41,6 +42,7 @@ class App extends React.Component {
                     <SimpleModal />
                     <Button onClick={this.toggleHidden.bind(this)}>Toggle</Button>
                 </div>
+                <Map />
             </div>
         );
     }
