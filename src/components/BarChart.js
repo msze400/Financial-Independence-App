@@ -9,6 +9,7 @@ import {
     VerticalBarSeries,
     AreaSeries,
 } from 'react-vis';
+import { FlexibleXYPlot, FlexibleWidthXYPlot, FlexibleHeightXYPlot } from 'react-vis';
 import { Motion, spring } from 'react-motion';
 import { compountInterestPrincipal, futureValueSeries } from './commonFunctions.js';
 
@@ -56,7 +57,7 @@ class BarSeries extends React.Component {
         }, []);
 
         return (
-            <XYPlot width={500} height={500} margin={{ left: 100 }}>
+            <XYPlot width={800} height={500} margin={{ left: 100 }}>
                 <HorizontalGridLines />
                 <VerticalBarSeries data={finalData} animation={{ damping: 5, stiffness: 9 }} />
                 <XAxis title="Time (Years)" />

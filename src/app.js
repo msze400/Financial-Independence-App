@@ -12,6 +12,8 @@ import SimpleModal from './components/Meme.js';
 import { render } from 'react-dom';
 import Button from '@material-ui/core/Button';
 import Map from './components/Map.js';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Paper from '@material-ui/core/Paper';
 
 class App extends React.Component {
     constructor(props) {
@@ -30,20 +32,31 @@ class App extends React.Component {
     render() {
         // console.log('STATE', this.state);
         return (
-            <div id="App">
-                <Navbar />
-                <div id="Body">
-                    <UserInput />
-                    <Legend />
-                    {this.state.isHidden ? <BarSeries /> : null}
-                    {!this.state.isHidden ? <StackedAreaSeries /> : null}
+            <React.Fragment>
+                <CssBaseline />
+                <div id="App">
+                    <Navbar />
+                    <div id="Body" style={{ margin: 20 }}>
+                        <UserInput />
+                    </div>
+                    <Paper id="Graphs" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                        {this.state.isHidden ? <BarSeries /> : null}
+                        {!this.state.isHidden ? <StackedAreaSeries /> : null}
+                        <div className="LegendToggle">
+                            <Legend />
+                            <Button
+                                onClick={this.toggleHidden.bind(this)}
+                                style={{ height: 40 }}
+                                variant="outlined"
+                                color="primary"
+                            >
+                                Change View
+                            </Button>
+                        </div>
+                    </Paper>
+                    <Map />
                 </div>
-                <div>
-                    <SimpleModal />
-                    <Button onClick={this.toggleHidden.bind(this)}>Toggle</Button>
-                </div>
-                <Map />
-            </div>
+            </React.Fragment>
         );
     }
 }

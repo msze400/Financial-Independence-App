@@ -62,7 +62,7 @@ class StackedAreaSeries extends React.Component {
 
         console.log('Contribution-DATA', contributionsData);
         return (
-            <XYPlot width={500} height={500} margin={{ left: 100 }}>
+            <XYPlot width={700} height={500} margin={{ left: 100 }}>
                 <HorizontalGridLines />
                 <AreaSeries
                     color="#79c7e3"

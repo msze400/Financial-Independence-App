@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
 }));
 
@@ -47,7 +50,7 @@ export default function SimpleModal() {
         <div style={modalStyle} className={classes.paper}>
             <img src="assets/Zoom.png"></img>
             <p id="simple-modal-description">
-                "Build a 'Can I quit my job and live in a forest app'" -Steve Jobs, probably
+                <i>"Build a 'Can I quit my job and live in a forest app'"</i> -Steve Jobs, probably
             </p>
         </div>
     );

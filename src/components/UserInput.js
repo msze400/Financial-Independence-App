@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { updateUserInput } from '../index.js';
+import { Typography } from '@material-ui/core';
 
 const styles = (theme) => ({
     form: {
@@ -15,11 +16,16 @@ const styles = (theme) => ({
     },
     formContainer: {
         padding: '2rem',
-        width: '30vw',
-        height: '65vh',
+        width: '25vw',
+        height: '70vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        padding: '10px;',
+    },
+    title: {
+        paddingBottom: '1rem',
+        fontWeight: 'bold',
     },
 });
 
@@ -81,8 +87,11 @@ class UserInput extends React.Component {
         console.log(this.props);
 
         return (
-            <Paper className={classes.formContainer}>
-                <form onSubmit={handleSubmit}>
+            <Paper>
+                <form className={classes.formContainer} onSubmit={handleSubmit}>
+                    <Typography variant="h5" className={classes.title}>
+                        Enter Your Info:{' '}
+                    </Typography>
                     <TextField
                         className={classes.input}
                         label="Current Age"

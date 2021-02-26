@@ -2,6 +2,25 @@ import React, { Component } from 'react';
 // import './App.css'; /* optional for styling like the :hover pseudo-class */
 import USAMap from 'react-usa-map';
 import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import { Typography } from '@material-ui/core';
+
+const styles = (theme) => ({
+    Map: {
+        height: '50vh',
+        width: '50vw',
+        display: 'flex',
+    },
+    stateIncome: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        // alignContent: 'center',
+        justifyContent: 'center',
+    },
+});
 
 class Map extends Component {
     constructor(props) {
@@ -24,7 +43,7 @@ class Map extends Component {
                 CO: '72,331',
                 UT: '71,621',
                 MN: '71,306',
-                NJ: '68,486',
+                NY: '68,486',
                 DE: '68,287',
                 RI: '67,167',
                 IL: '65,886',
@@ -74,34 +93,30 @@ class Map extends Component {
         });
     }
 
-    statesCustomConfig() {
-        return {
-            NJ: {
-                // console.log(event.target.dataset, this.state.medianIncomeData),
-            },
-            NY: {},
-        };
-    }
+    // statesCustomConfig() {
+    //     return {};
+    // }
 
     render() {
+        const { classes, theme } = this.props;
         return (
-            <div className="Map" style={{ width: '50vw' }}>
-                <Paper>
-                    <USAMap
-                        customize={this.statesCustomConfig()}
-                        onClick={this.mapHandler}
-                        width={500}
-                    />
-                    <Paper>
-                        <p>
-                            Median Income for {this.state.currentState} is $
-                            {this.state.medianIncome}{' '}
-                        </p>
-                    </Paper>
+            <Paper style={{ margin: 20 }} className={classes.Map}>
+                <USAMap
+                    // customize={this.statesCustomConfig()}
+                    onClick={this.mapHandler}
+                    // width={500}
+                    height={500}
+                />
+                <Paper className={classes.stateIncome} style={{ width: '25vw' }}>
+                    <AttachMoneyIcon style={{ fontSize: 40, color: 'green' }} />
+                    <Typography>
+                        Median Income for {this.state.currentState} <br />
+                        is ${this.state.medianIncome}{' '}
+                    </Typography>
                 </Paper>
-            </div>
+            </Paper>
         );
     }
 }
 
-export default Map;
+export default withStyles(styles, { withTheme: true })(Map);
