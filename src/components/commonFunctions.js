@@ -17,3 +17,7 @@ export function futureValueSeries(monthlyContribution, interestRate, numInterest
 export function onlyContributions(initialAmount, monthlyContribution, year) {
     return initialAmount * 1 + year * monthlyContribution * 12;
 }
+
+export function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}

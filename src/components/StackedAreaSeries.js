@@ -8,6 +8,7 @@ import {
     LineSeries,
     AreaSeries,
     VerticalBarSeries,
+    VerticalGridLines,
 } from 'react-vis';
 import { Motion, spring } from 'react-motion';
 import {
@@ -62,8 +63,9 @@ class StackedAreaSeries extends React.Component {
 
         console.log('Contribution-DATA', contributionsData);
         return (
-            <XYPlot width={700} height={500} margin={{ left: 100 }}>
+            <XYPlot width={800} height={500} margin={{ left: 100 }}>
                 <HorizontalGridLines />
+                <VerticalGridLines />
                 <AreaSeries
                     color="#79c7e3"
                     data={finalData}

@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import Map from './components/Map.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
+import CoolStats from './components/CoolStats.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -55,6 +56,7 @@ class App extends React.Component {
                         </div>
                     </Paper>
                     <Map />
+                    <CoolStats />
                 </div>
             </React.Fragment>
         );

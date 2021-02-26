@@ -5,6 +5,7 @@ import {
     XAxis,
     YAxis,
     HorizontalGridLines,
+    VerticalGridLines,
     LineSeries,
     VerticalBarSeries,
     AreaSeries,
@@ -59,6 +60,7 @@ class BarSeries extends React.Component {
         return (
             <XYPlot width={800} height={500} margin={{ left: 100 }}>
                 <HorizontalGridLines />
+                <VerticalGridLines />
                 <VerticalBarSeries data={finalData} animation={{ damping: 5, stiffness: 9 }} />
                 <XAxis title="Time (Years)" />
                 <YAxis title="Dollar Amount" />

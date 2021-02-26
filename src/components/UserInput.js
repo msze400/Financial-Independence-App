@@ -122,6 +122,7 @@ class UserInput extends React.Component {
                         name="monthlyContribution"
                         value={monthlyContribution}
                         onChange={(evt) => handleChange(evt)}
+
                         // InputProps={{
                         //     inputComponent: NumberFormatCustom,
                         // }}
