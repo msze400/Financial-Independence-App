@@ -9,6 +9,7 @@ import {
     LineSeries,
     VerticalBarSeries,
     AreaSeries,
+    Hint,
 } from 'react-vis';
 import { FlexibleXYPlot, FlexibleWidthXYPlot, FlexibleHeightXYPlot } from 'react-vis';
 import { Motion, spring } from 'react-motion';
@@ -57,7 +58,13 @@ class BarSeries extends React.Component {
             <XYPlot width={900} height={475} margin={{ left: 100 }}>
                 <HorizontalGridLines />
                 <VerticalGridLines />
-                <VerticalBarSeries data={finalData} animation={{ damping: 5, stiffness: 9 }} />
+                <VerticalBarSeries
+                    data={finalData}
+                    animation={{ damping: 5, stiffness: 9 }}
+                    onValueClick={(datapoint, event) => {
+                        console.log(datapoint);
+                    }}
+                />
                 <XAxis className="XAxis" tickLabelAngle={0} />
                 <YAxis
                     tickFormat={function tickFormat(d) {
