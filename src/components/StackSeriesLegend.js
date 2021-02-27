@@ -11,7 +11,7 @@ const legendItems = [
         strokeWidth: 6,
     },
     {
-        title: 'ContributedAmount',
+        title: 'Contributed Amount',
         color: '#DCEDC8',
         strokeWidth: 6,
     },
