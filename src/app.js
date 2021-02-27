@@ -40,7 +40,10 @@ class App extends React.Component {
                     <div id="Body" style={{ margin: 20 }}>
                         <UserInput />
                     </div>
-                    <Paper id="Graphs" style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <Paper
+                        id="Graphs"
+                        style={{ display: 'flex', flexWrap: 'wrap', paddingTop: '1rem' }}
+                    >
                         {this.state.isHidden ? <BarSeries /> : null}
                         {!this.state.isHidden ? <StackedAreaSeries /> : null}
                         <div className="LegendToggle">
@@ -55,8 +58,10 @@ class App extends React.Component {
                             </Button>
                         </div>
                     </Paper>
-                    <Map />
-                    <CoolStats />
+                    <div className="Map-Stats">
+                        <Map />
+                        <CoolStats />
+                    </div>
                 </div>
             </React.Fragment>
         );

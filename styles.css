@@ -60,9 +60,20 @@ path:hover {
 #Graphs {
     display: flex;
     height: 75vh;
+    width: 68vw;
     justify-content: center;
 }
 
 .LegendToggle {
     display: flex;
+}
+
+.Map-Stats {
+    display: flex;
+    align-items: flex-start;
+}
+
+.XAxis > text {
+    color: purple;
+    transform: translate(-20px, -5px);
 }

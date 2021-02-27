@@ -15,6 +15,7 @@ import {
     compountInterestPrincipal,
     futureValueSeries,
     onlyContributions,
+    numberWithCommas,
 } from './commonFunctions.js';
 
 class StackedAreaSeries extends React.Component {
@@ -63,7 +64,7 @@ class StackedAreaSeries extends React.Component {
 
         console.log('Contribution-DATA', contributionsData);
         return (
-            <XYPlot width={800} height={500} margin={{ left: 100 }}>
+            <XYPlot width={900} height={475} margin={{ left: 100 }}>
                 <HorizontalGridLines />
                 <VerticalGridLines />
                 <AreaSeries
@@ -76,8 +77,13 @@ class StackedAreaSeries extends React.Component {
                     data={contributionsData}
                     animation={{ damping: 5, stiffness: 9 }}
                 />
-                <XAxis title="Time (Years)" />
-                <YAxis title="Dollar Amount" />
+                <XAxis />
+                <YAxis
+                    tickFormat={function tickFormat(d) {
+                        const value = `$${numberWithCommas(d)}`;
+                        return value;
+                    }}
+                />
             </XYPlot>
         );
     }

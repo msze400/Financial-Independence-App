@@ -20,6 +20,10 @@ const styles = (theme) => ({
         // alignContent: 'center',
         justifyContent: 'center',
     },
+
+    greenText: {
+        color: 'green',
+    },
 });
 
 class Map extends Component {
@@ -108,10 +112,10 @@ class Map extends Component {
                     height={500}
                 />
                 <Paper className={classes.stateIncome} style={{ width: '25vw' }}>
-                    <AttachMoneyIcon style={{ fontSize: 40, color: 'green' }} />
-                    <Typography>
-                        Median Income for {this.state.currentState} <br />
-                        is ${this.state.medianIncome}{' '}
+                    <AttachMoneyIcon style={{ fontSize: 40 }} />
+                    <Typography style={{ fontSize: 20 }}>
+                        Median Income for {this.state.currentState}: <br />
+                        <b className={classes.greenText}>${this.state.medianIncome}</b>
                     </Typography>
                 </Paper>
             </Paper>

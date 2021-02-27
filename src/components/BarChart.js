@@ -12,18 +12,14 @@ import {
 } from 'react-vis';
 import { FlexibleXYPlot, FlexibleWidthXYPlot, FlexibleHeightXYPlot } from 'react-vis';
 import { Motion, spring } from 'react-motion';
-import { compountInterestPrincipal, futureValueSeries } from './commonFunctions.js';
+import {
+    compountInterestPrincipal,
+    futureValueSeries,
+    numberWithCommas,
+} from './commonFunctions.js';
 
 class BarSeries extends React.Component {
     render() {
-        // const Test = (props) => {
-        //     return (
-        //         <Motion defaultStyle={{ x: 0 }} style={{ x: spring(10) }}>
-        //             {(value) => <div>{value.x}</div>}
-        //         </Motion>
-        //     )
-        // }
-
         const {
             initialAmount,
             interestRate,
@@ -58,12 +54,17 @@ class BarSeries extends React.Component {
         }, []);
 
         return (
-            <XYPlot width={800} height={500} margin={{ left: 100 }}>
+            <XYPlot width={900} height={475} margin={{ left: 100 }}>
                 <HorizontalGridLines />
                 <VerticalGridLines />
                 <VerticalBarSeries data={finalData} animation={{ damping: 5, stiffness: 9 }} />
-                <XAxis title="Time (Years)" />
-                <YAxis title="Dollar Amount" />
+                <XAxis className="XAxis" tickLabelAngle={0} />
+                <YAxis
+                    tickFormat={function tickFormat(d) {
+                        const value = `$${numberWithCommas(d)}`;
+                        return value;
+                    }}
+                />
             </XYPlot>
         );
     }

@@ -2,11 +2,51 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compountInterestPrincipal, futureValueSeries } from './commonFunctions.js';
 import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 
 import { numberWithCommas, onlyContributions } from './commonFunctions.js';
+import ShowChartIcon from '@material-ui/icons/ShowChart';
+import EcoIcon from '@material-ui/icons/Eco';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+
+const styles = (theme) => ({
+    stats: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        textAlign: 'center',
+        justifyContent: 'center',
+        width: '44.3vw',
+        height: '50vh',
+        marginTop: '1.3rem',
+        flexWrap: 'wrao',
+    },
+
+    icon: {
+        fontSize: '40',
+    },
+
+    greenText: {
+        color: 'green',
+    },
+
+    statText: {
+        fontSize: '20',
+    },
+
+    columnLeft: {
+        paddingRight: '20',
+    },
+
+    columnRight: {
+        paddingLeft: '20',
+    },
+});
 
 class CoolStats extends React.Component {
     render() {
+        const { classes, theme } = this.props;
         const {
             initialAmount,
             interestRate,
@@ -51,11 +91,31 @@ class CoolStats extends React.Component {
         // used for x series label
 
         return (
-            <Paper>
-                <p>End Total: {endTotal}</p>
-                <p>Total Contribution ${totalContributionMade}</p>
-                <p>Amount Needed to Go Live in the Forest: ${amountNeeded} </p>
-                <p>Amount Needed to Go Live in the Forest: ${totalGrowth} </p>
+            <Paper className={classes.stats}>
+                <div className={classes.columnLeft}>
+                    <LocalAtmIcon className={classes.icon} />
+                    <p className={classes.statText}>
+                        Retirement Total: <br /> <b className={classes.greenText}>{endTotal}</b>
+                    </p>
+
+                    <AccountBalanceIcon className={classes.icon} />
+                    <p className={classes.statText}>
+                        Total Contribution: <br />{' '}
+                        <b className={classes.greenText}>${totalContributionMade}</b>
+                    </p>
+                </div>
+
+                <div className={classes.columnRight}>
+                    <EcoIcon className={classes.icon} />
+                    <p className={classes.statText}>
+                        Forest Life Money Needed: <br />{' '}
+                        <b className={classes.greenText}>${amountNeeded}</b>
+                    </p>
+                    <ShowChartIcon className={classes.icon} />
+                    <p className={classes.statText}>
+                        Total Growth: <br /> <b className={classes.greenText}>${totalGrowth}</b>
+                    </p>
+                </div>
             </Paper>
         );
     }
@@ -71,4 +131,4 @@ const mapStateToProps = (state) => ({
     monthlyExpenses: state.monthlyExpenses,
 });
 
-export default connect(mapStateToProps)(CoolStats);
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps)(CoolStats));

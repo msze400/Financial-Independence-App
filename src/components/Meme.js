@@ -50,7 +50,11 @@ export default function SimpleModal() {
         <div style={modalStyle} className={classes.paper}>
             <img src="assets/Zoom.png"></img>
             <p id="simple-modal-description">
-                <i>"Build a 'Can I quit my job and live in a forest app'"</i> -Steve Jobs, probably
+                <i>"Build a 'Can I quit my job and live in a forest app'"</i>
+                <br />{' '}
+                <i>
+                    -<b>Steve Jobs, probably</b>
+                </i>
             </p>
         </div>
     );
