@@ -8,6 +8,8 @@ app.use(express.static(__dirname));
 
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
 
+app.use('/dist', static(path.join(__dirname, 'dist')));
+
 // app.get('/api/users', async (req, res, next) => {
 //     try {
 //         res.send(await User.findAll())
@@ -20,7 +22,7 @@ const init = async () => {
     try {
         await syncAndSeed();
         const port = process.env.PORT || 3000;
-        app.listen(process.env.PORT || port, () => console.log(`listening on port ${port}`));
+        app.listen(port, () => console.log(`listening on port ${port}`));
     } catch (ex) {
         console.log(ex);
     }
