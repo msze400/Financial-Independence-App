@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 const UPDATE_FORM = 'UPDATE_FORM';
+const UPDATE_BAR_POINT = 'UPDATE_BAR_POINT';
 
 const initialState = {
     currentAge: 21,
@@ -35,6 +36,13 @@ export const updateUserInput = (
     };
 };
 
+export const updateDataPoint = (datapoint) => {
+    return {
+        type: UPDATE_BAR_POINT,
+        datapoint,
+    };
+};
+
 function reducer(state = initialState, action) {
     console.log('ACTION', action);
     switch (action.type) {
@@ -47,6 +55,12 @@ function reducer(state = initialState, action) {
                 interestRate: action.interestRate,
                 monthlyExpenses: action.monthlyExpenses,
                 monthlyContribution: action.monthlyContribution,
+            };
+
+        case 'UPDATE_BAR_POINT':
+            return {
+                ...state,
+                datapoint: action.datapoint,
             };
         default:
             console.log(state);

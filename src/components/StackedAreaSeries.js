@@ -68,12 +68,12 @@ class StackedAreaSeries extends React.Component {
                 <HorizontalGridLines />
                 <VerticalGridLines />
                 <AreaSeries
-                    color="#79c7e3"
+                    color="#41B3D5"
                     data={finalData}
                     animation={{ damping: 5, stiffness: 9 }}
                 />
                 <AreaSeries
-                    color="blue"
+                    color="#DCEDC8"
                     data={contributionsData}
                     animation={{ damping: 5, stiffness: 9 }}
                 />

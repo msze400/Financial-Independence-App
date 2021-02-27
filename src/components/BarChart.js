@@ -19,6 +19,8 @@ import {
     numberWithCommas,
 } from './commonFunctions.js';
 
+import { updateDataPoint } from '../index.js';
+
 class BarSeries extends React.Component {
     render() {
         const {
@@ -29,6 +31,7 @@ class BarSeries extends React.Component {
             retiringAge,
             monthlyContribution,
         } = this.props;
+        const { updateViewedDataPoint } = this.props;
 
         const numInterestApplied = 12;
         const growthPeriod = retiringAge - currentAge + 1;
@@ -62,8 +65,9 @@ class BarSeries extends React.Component {
                     data={finalData}
                     animation={{ damping: 5, stiffness: 9 }}
                     onValueClick={(datapoint, event) => {
-                        console.log(datapoint);
+                        updateViewedDataPoint(datapoint);
                     }}
+                    color="#6746c3"
                 />
                 <XAxis className="XAxis" tickLabelAngle={0} />
                 <YAxis
@@ -87,4 +91,12 @@ const mapStateToProps = (state) => ({
     monthlyExpenses: state.monthlyExpenses,
 });
 
-export default connect(mapStateToProps)(BarSeries);
+const mapDispatch = (dispatch) => {
+    return {
+        updateViewedDataPoint(datapoint, evt) {
+            dispatch(updateDataPoint(datapoint));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatch)(BarSeries);

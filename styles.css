@@ -77,3 +77,9 @@ path:hover {
     color: purple;
     transform: translate(-20px, -5px);
 }
+
+.clickOn {
+    padding-left: 10vw;
+    display: flex;
+    flex-direction: column;
+}

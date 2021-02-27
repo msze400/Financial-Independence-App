@@ -61,7 +61,12 @@ export default function SimpleModal() {
 
     return (
         <div>
-            <Button animation="pulse" type="button" onClick={handleOpen}>
+            <Button
+                animation="pulse"
+                type="button"
+                onClick={handleOpen}
+                style={{ marginTop: '1rem', marginRight: '1rem', color: 'white' }}
+            >
                 Inspiration
             </Button>
             <Modal
