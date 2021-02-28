@@ -9,6 +9,7 @@ import {
     AreaSeries,
     VerticalBarSeries,
     VerticalGridLines,
+    makeVisFlexible,
 } from 'react-vis';
 import { Motion, spring } from 'react-motion';
 import {
@@ -17,6 +18,7 @@ import {
     onlyContributions,
     numberWithCommas,
 } from './commonFunctions.js';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 class StackedAreaSeries extends React.Component {
     render() {
@@ -63,28 +65,37 @@ class StackedAreaSeries extends React.Component {
         }, []);
 
         console.log('Contribution-DATA', contributionsData);
+
+        const FlexibleXYPlot = makeVisFlexible(XYPlot);
+
         return (
-            <XYPlot width={900} height={475} margin={{ left: 100 }}>
-                <HorizontalGridLines />
-                <VerticalGridLines />
-                <AreaSeries
-                    color="#41B3D5"
-                    data={finalData}
-                    animation={{ damping: 5, stiffness: 9 }}
-                />
-                <AreaSeries
-                    color="#DCEDC8"
-                    data={contributionsData}
-                    animation={{ damping: 5, stiffness: 9 }}
-                />
-                <XAxis />
-                <YAxis
-                    tickFormat={function tickFormat(d) {
-                        const value = `$${numberWithCommas(d)}`;
-                        return value;
-                    }}
-                />
-            </XYPlot>
+            <div style={{ height: '60vh', width: '66vw' }}>
+                <AutoSizer>
+                    {({ height, width }) => (
+                        <FlexibleXYPlot height={height} width={width} margin={{ left: 100 }}>
+                            <HorizontalGridLines />
+                            <VerticalGridLines />
+                            <AreaSeries
+                                color="#41B3D5"
+                                data={finalData}
+                                animation={{ damping: 5, stiffness: 9 }}
+                            />
+                            <AreaSeries
+                                color="#DCEDC8"
+                                data={contributionsData}
+                                animation={{ damping: 5, stiffness: 9 }}
+                            />
+                            <XAxis />
+                            <YAxis
+                                tickFormat={function tickFormat(d) {
+                                    const value = `$${numberWithCommas(d)}`;
+                                    return value;
+                                }}
+                            />
+                        </FlexibleXYPlot>
+                    )}
+                </AutoSizer>
+            </div>
         );
     }
 }

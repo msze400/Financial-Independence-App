@@ -43,7 +43,12 @@ class App extends React.Component {
                     </div>
                     <Paper
                         id="Graphs"
-                        style={{ display: 'flex', flexWrap: 'wrap', paddingTop: '1rem' }}
+                        style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            paddingTop: '1rem',
+                            overflow: 'auto',
+                        }}
                     >
                         {this.state.isHidden ? <BarSeries /> : null}
                         {!this.state.isHidden ? <StackedAreaSeries /> : null}
