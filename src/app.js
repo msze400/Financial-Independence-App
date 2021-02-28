@@ -32,49 +32,59 @@ class App extends React.Component {
 
     render() {
         // console.log('STATE', this.state);
+
         console.log('PROPS', this.props);
         return (
             <React.Fragment>
                 <CssBaseline />
                 <div id="App">
                     <Navbar />
-                    <div id="Body" style={{ margin: 20 }}>
-                        <UserInput />
-                    </div>
-                    <Paper
-                        id="Graphs"
-                        style={{ display: 'flex', flexWrap: 'wrap', paddingTop: '1rem' }}
-                    >
-                        {this.state.isHidden ? <BarSeries /> : null}
-                        {!this.state.isHidden ? <StackedAreaSeries /> : null}
-                        <div className="LegendToggle">
-                            {this.state.isHidden ? <Legend /> : null}
-                            {!this.state.isHidden ? <StackSeriesLegend /> : null}
-                            <Button
-                                onClick={this.toggleHidden.bind(this)}
-                                style={{ height: 40 }}
-                                variant="outlined"
-                                color="primary"
-                            >
-                                Change View
-                            </Button>
-                            <div className="clickOn">
-                                <Typography>
-                                    <u>Current Point</u>
-                                </Typography>
-                                <Typography>
-                                    Age:
-                                    {this.props.datapoint ? `${this.props.datapoint['x']}` : null}
-                                </Typography>
-                                <Typography>
-                                    Amount:
-                                    {this.props.datapoint
-                                        ? `$${Math.floor(this.props.datapoint['y'])}`
-                                        : null}
-                                </Typography>
-                            </div>
+                    <div className="parent">
+                        <div id="Body" style={{ margin: 20 }}>
+                            <UserInput />
                         </div>
-                    </Paper>
+                        <Paper
+                            id="Graphs"
+                            style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                paddingTop: '1rem',
+                                overflow: 'auto',
+                            }}
+                        >
+                            {this.state.isHidden ? <BarSeries /> : null}
+                            {!this.state.isHidden ? <StackedAreaSeries /> : null}
+                            <div className="LegendToggle">
+                                {this.state.isHidden ? <Legend /> : null}
+                                {!this.state.isHidden ? <StackSeriesLegend /> : null}
+                                <Button
+                                    onClick={this.toggleHidden.bind(this)}
+                                    style={{ height: 40 }}
+                                    variant="outlined"
+                                    color="primary"
+                                >
+                                    Change View
+                                </Button>
+                                <div className="clickOn">
+                                    <Typography>
+                                        <u>Current Point</u>
+                                    </Typography>
+                                    <Typography>
+                                        Age:
+                                        {this.props.datapoint
+                                            ? `${this.props.datapoint['x']}`
+                                            : null}
+                                    </Typography>
+                                    <Typography>
+                                        Amount:
+                                        {this.props.datapoint
+                                            ? `$${Math.floor(this.props.datapoint['y'])}`
+                                            : null}
+                                    </Typography>
+                                </div>
+                            </div>
+                        </Paper>
+                    </div>
                     <div className="Map-Stats">
                         <Map />
                         <CoolStats />

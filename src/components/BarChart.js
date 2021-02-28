@@ -11,7 +11,12 @@ import {
     AreaSeries,
     Hint,
 } from 'react-vis';
-import { FlexibleXYPlot, FlexibleWidthXYPlot, FlexibleHeightXYPlot } from 'react-vis';
+import {
+    FlexibleXYPlot,
+    FlexibleWidthXYPlot,
+    FlexibleHeightXYPlot,
+    makeVisFlexible,
+} from 'react-vis';
 import { Motion, spring } from 'react-motion';
 import {
     compountInterestPrincipal,
@@ -20,9 +25,11 @@ import {
 } from './commonFunctions.js';
 
 import { updateDataPoint } from '../index.js';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 class BarSeries extends React.Component {
     render() {
+        const FlexibleXYPlot = makeVisFlexible(XYPlot);
         const {
             initialAmount,
             interestRate,
@@ -58,25 +65,31 @@ class BarSeries extends React.Component {
         }, []);
 
         return (
-            <XYPlot width={900} height={475} margin={{ left: 100 }}>
-                <HorizontalGridLines />
-                <VerticalGridLines />
-                <VerticalBarSeries
-                    data={finalData}
-                    animation={{ damping: 5, stiffness: 9 }}
-                    onValueClick={(datapoint, event) => {
-                        updateViewedDataPoint(datapoint);
-                    }}
-                    color="#6746c3"
-                />
-                <XAxis className="XAxis" tickLabelAngle={0} />
-                <YAxis
-                    tickFormat={function tickFormat(d) {
-                        const value = `$${numberWithCommas(d)}`;
-                        return value;
-                    }}
-                />
-            </XYPlot>
+            <div style={{ height: '60vh', width: '66vw' }}>
+                <AutoSizer>
+                    {({ height, width }) => (
+                        <FlexibleXYPlot height={height} width={width} margin={{ left: 100 }}>
+                            <HorizontalGridLines />
+                            <VerticalGridLines />
+                            <VerticalBarSeries
+                                data={finalData}
+                                animation={{ damping: 5, stiffness: 9 }}
+                                onValueClick={(datapoint, event) => {
+                                    updateViewedDataPoint(datapoint);
+                                }}
+                                color="#6746c3"
+                            />
+                            <XAxis className="XAxis" tickLabelAngle={0} />
+                            <YAxis
+                                tickFormat={function tickFormat(d) {
+                                    const value = `$${numberWithCommas(d)}`;
+                                    return value;
+                                }}
+                            />
+                        </FlexibleXYPlot>
+                    )}
+                </AutoSizer>
+            </div>
         );
     }
 }
