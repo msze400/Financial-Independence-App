@@ -83,3 +83,8 @@ path:hover {
     display: flex;
     flex-direction: column;
 }
+
+.parent {
+    display: flex;
+    flex-direction: row;
+}
