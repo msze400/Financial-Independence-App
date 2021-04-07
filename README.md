@@ -1,3 +1,21 @@
-# Financial-Independence-App
+# Built to Learn
 
-This financial independence app allows users to input key parameters regarding their spending and saving habits, then displays data regarding how much their assets have the ability to grow over a certain time period.
+## Project Details
+Website: https://finfreedom-dashboard.herokuapp.com/
+
+## List of APIs and Tools Utilized
+
+- [Express](https://expressjs.com/) for backend framework
+- [React](https://reactjs.org/) for frontend framework
+- [Node](https://nodejs.org/en/) for backend
+- [Material UI](https://materializecss.com/) for CSS Framwork
+- [Redux](https://react-redux.js.org/) used for state management
+- [React-vis] to show financial data through data visualization graphs
+
+## Features
+
+## Challenges
+
+
+## Accomplishments
+
