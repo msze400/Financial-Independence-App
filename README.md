@@ -1,4 +1,4 @@
-Financial Freedom Dashboard
+# Financial Freedom Dashboard
 
 ## Project Details
 Website: https://finfreedom-dashboard.herokuapp.com/
