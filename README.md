@@ -1,4 +1,4 @@
-# Built to Learn
+Financial Freedom Dashboard
 
 ## Project Details
 Website: https://finfreedom-dashboard.herokuapp.com/
