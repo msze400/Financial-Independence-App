@@ -10,7 +10,7 @@ Website: https://finfreedom-dashboard.herokuapp.com/
 - [Node](https://nodejs.org/en/) for backend
 - [Material UI](https://materializecss.com/) for CSS Framwork
 - [Redux](https://react-redux.js.org/) used for state management
-- [React-vis] to show financial data through data visualization graphs
+- [React-vis](https://uber.github.io/react-vis/) to show financial data through data visualization graphs
 
 ## Features
 
